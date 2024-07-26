@@ -85,11 +85,12 @@
 
                             $sql = "SELECT * FROM usuarios";
                             $result = $conn->query($sql);
+                            $numero = 1;
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>";
-                                    echo  "<td>$row[id]</td>";
+                                    echo  "<td>$numero</td>";
                                     echo "<td>$row[nombre]</td>";
                                     echo "<td>$row[sexo]</td>";
                                     echo "<td>$row[fecha_nacimiento]</td>";
@@ -99,6 +100,7 @@
                                     <i class='bi bi-pencil-square'></i>
                                     </td>";
                                     echo "</tr>";
+                                    $numero++;
                                 }
                             } else {
                                 echo "Sin usuarios";

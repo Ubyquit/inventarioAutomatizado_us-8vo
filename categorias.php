@@ -24,7 +24,7 @@
             background-color: #45a049;
         }
     </style>
-    <title>Clientes</title>
+    <title>Categorias</title>
 </head>
 
 <body>
@@ -36,27 +36,15 @@
         </div>
 
         <div class="w3-container">
-            <h1>Clientes</h1>
+            <h1>Categorias</h1>
             <div class="row">
                 <div class="col-3">
-                    <form action="./php/clientes/insert.php" method="POST">
+                    <form action="./php/categorias/insert.php" method="POST">
                         <div class="mb-3">
                             <label class="form-label" class="form-label" for="register-name">Nombre:</label>
                             <input class="form-control" class="form-control" type="text" id="register-name" name="nombre" maxlength="50" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" class="form-label" for="register-name">Correo electrónico:</label>
-                            <input class="form-control" class="form-control" type="email" id="register-name" name="correo" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="register-dob">teléfono:</label>
-                            <input class="form-control" type="tel" minlength="10" maxlength="10" id="register-dob" name="telefono" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="register-username">Ubicación</label>
-                            <textarea class="form-control" type="text" id="register-username" name="ubicacion" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Crear Cliente</button>
+                        <button type="submit" class="btn">Crear Categoria</button>
                     </form>
                 </div>
                 <div class="col-9">
@@ -65,9 +53,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Ubicación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -75,9 +60,8 @@
                             <?php
                             include './php/connection.php';
 
-                            $sql = "SELECT * FROM clientes";
+                            $sql = "SELECT * FROM categorias";
                             $result = $conn->query($sql);
-
                             $numero = 1;
 
                             if ($result->num_rows > 0) {
@@ -85,18 +69,15 @@
                                     echo "<tr>";
                                     echo  "<td>$numero</td>";
                                     echo "<td>$row[nombre]</td>";
-                                    echo "<td>$row[correo]</td>";
-                                    echo "<td>$row[telefono]</td>";
-                                    echo "<td>$row[ubicacion]</td>";
                                     echo "<td>
-                                    <a href='./php/clientes/delete.php?id=$row[id_cliente]'><i class='bi bi-trash3-fill' style='font-size: 1.2rem; color: red;'></i></a>
+                                    <a href='./php/categorias/delete.php?id=$row[id_categoria]'><i class='bi bi-trash3-fill' style='font-size: 1.2rem; color: red;'></i></a>
                                     <i class='bi bi-pencil-square'></i>
                                     </td>";
                                     echo "</tr>";
                                     $numero++;
                                 }
                             } else {
-                                echo "<div class='alert alert-info' role='alert'>Sin clientes</div>";
+                                echo "<div class='alert alert-info' role='alert'>Sin categorias</div>";
                             }
                             ?>
                         </tbody>

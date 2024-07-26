@@ -24,7 +24,7 @@
             background-color: #45a049;
         }
     </style>
-    <title>Clientes</title>
+    <title>Productos</title>
 </head>
 
 <body>
@@ -36,27 +36,47 @@
         </div>
 
         <div class="w3-container">
-            <h1>Clientes</h1>
+            <h1>Productos</h1>
             <div class="row">
                 <div class="col-3">
-                    <form action="./php/clientes/insert.php" method="POST">
+                    <form action="./php/productos/insert.php" method="POST">
                         <div class="mb-3">
                             <label class="form-label" class="form-label" for="register-name">Nombre:</label>
                             <input class="form-control" class="form-control" type="text" id="register-name" name="nombre" maxlength="50" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" class="form-label" for="register-name">Correo electrónico:</label>
-                            <input class="form-control" class="form-control" type="email" id="register-name" name="correo" required>
+                            <label class="form-label " for="register-code">Código:</label>
+                            <input class="form-control" type="text" id="register-code" name="codigo" maxlength="10" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="register-dob">teléfono:</label>
-                            <input class="form-control" type="tel" minlength="10" maxlength="10" id="register-dob" name="telefono" required>
+                            <label class="form-label" for="register-price">Precio:</label>
+                            <input class="form-control" type="number" id="register-price" name="precio" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="register-username">Ubicación</label>
-                            <textarea class="form-control" type="text" id="register-username" name="ubicacion" required></textarea>
+                            <label class="form-label " for="register-quantity">Cantidad:</label>
+                            <input class="form-control" type="number" id="register-quantity" name="cantidad" required>
                         </div>
-                        <button type="submit" class="btn">Crear Cliente</button>
+                        <div class="mb-3">
+                            <label class="form-label " for="register-category">Categoria:</label>
+                            <select class="form-select" id="register-category" name="categoria" required>
+                                <option value="">Selecciona una categoria</option>
+                                <?php
+                                include './php/connection.php';
+
+                                $sql = "SELECT * FROM categorias";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='$row[id_categoria]'>$row[nombre]</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>Sin categorias</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">Crear Categoria</button>
                     </form>
                 </div>
                 <div class="col-9">
@@ -65,9 +85,10 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Ubicación</th>
+                                <th>Código</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Categoria</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -75,28 +96,28 @@
                             <?php
                             include './php/connection.php';
 
-                            $sql = "SELECT * FROM clientes";
+                            $sql = "SELECT id_producto, productos.nombre as producto, codigo, precio, cantidad, categorias.nombre as categoria FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria";
                             $result = $conn->query($sql);
-
                             $numero = 1;
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo  "<td>$numero</td>";
-                                    echo "<td>$row[nombre]</td>";
-                                    echo "<td>$row[correo]</td>";
-                                    echo "<td>$row[telefono]</td>";
-                                    echo "<td>$row[ubicacion]</td>";
+                                    echo "<td>$row[producto]</td>";
+                                    echo "<td>$row[codigo]</td>";
+                                    echo "<td>$$row[precio]</td>";
+                                    echo "<td>$row[cantidad]</td>";
+                                    echo "<td>$row[categoria]</td>";
                                     echo "<td>
-                                    <a href='./php/clientes/delete.php?id=$row[id_cliente]'><i class='bi bi-trash3-fill' style='font-size: 1.2rem; color: red;'></i></a>
+                                    <a href='./php/productos/delete.php?id=$row[id_producto]'><i class='bi bi-trash3-fill' style='font-size: 1.2rem; color: red;'></i></a>
                                     <i class='bi bi-pencil-square'></i>
                                     </td>";
                                     echo "</tr>";
                                     $numero++;
                                 }
                             } else {
-                                echo "<div class='alert alert-info' role='alert'>Sin clientes</div>";
+                                echo "<div class='alert alert-info' role='alert'>Sin Productos</div>";
                             }
                             ?>
                         </tbody>
