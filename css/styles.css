@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d3dac7;
+}
+
+header {
+    background-color: #249737;
+    color: #e6cfcf;
+    text-align: center;
+    padding: 1em 0;
+    background: repeat, #249737;
+    background-size: cover;
+}
+
+header img {
+    width: 150px;
+    height: auto;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    background-color: #ecf4f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(252, 249, 249, 0.1);
+    position: relative;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 96%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #da8b24;
+    color: #faf1f7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.crear-cuenta-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.crear-cuenta {
+    padding: 5px 10px;
+    font-size: 0.8em;
+}
+
+.crear-cuenta:hover {
+    background-color: #45a049;
+}
